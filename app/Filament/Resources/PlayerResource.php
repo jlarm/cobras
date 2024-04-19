@@ -33,7 +33,12 @@ class PlayerResource extends Resource
                 Forms\Components\FileUpload::make('avatar')
                     ->image()
                     ->imageEditor()
-                    ->imageEditorAspectRatios(['1:1'])
+                    ->imageEditorAspectRatios([
+                        '16:9',
+                        '4:3',
+                        '1:1',
+                    ])
+                    ->directory('player-avatars')
                     ->columnSpanFull()
             ]);
     }

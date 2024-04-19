@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('division')->nullable();
             $table->string('team_name')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->json('social_links')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

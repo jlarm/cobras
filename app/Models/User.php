@@ -22,6 +22,8 @@ class User extends Authenticatable
         'slug',
         'division',
         'team_name',
+        'banner_image',
+        'social_links',
         'email',
         'password',
         'is_admin',
@@ -48,6 +50,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'social_links' => 'json',
         ];
     }
 

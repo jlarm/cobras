@@ -30,7 +30,8 @@ class TournamentResource extends Resource
                     ->columnSpanFull()
                     ->required(),
 
-                DatePicker::make('start_date'),
+                DatePicker::make('start_date')
+                    ->required(),
 
                 DatePicker::make('end_date')
                     ->required(),
