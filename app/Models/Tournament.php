@@ -5,6 +5,7 @@ namespace App\Models;
 use App\State;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Tournament extends Model
@@ -22,6 +23,11 @@ class Tournament extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function games(): HasMany
+    {
+        return $this->hasMany(Game::class);
     }
 
     protected function casts()
@@ -43,5 +49,4 @@ class Tournament extends Model
             $tournament->uuid = (string) Str::uuid();
         });
     }
-
 }

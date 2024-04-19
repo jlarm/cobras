@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Player::class);
     }
+
+    public function games(): HasMany
+    {
+        return $this->hasMany(Game::class);
+    }
 }

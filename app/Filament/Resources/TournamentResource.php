@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TournamentResource\Pages;
-use App\Filament\Resources\TournamentResource\RelationManagers;
+use App\Filament\Resources\TournamentResource\RelationManagers\GamesRelationManager;
 use App\Models\Tournament;
 use App\State;
 use Filament\Forms;
@@ -14,13 +14,14 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TournamentResource extends Resource
 {
     protected static ?string $model = Tournament::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -40,7 +41,7 @@ class TournamentResource extends Resource
                     ->required(),
 
                 Forms\Components\Select::make('state')
-                    ->options(State::class)
+                    ->options(State::class),
             ]);
     }
 
@@ -53,7 +54,7 @@ class TournamentResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('start_date')
-                ->date()
+                    ->date(),
             ])
             ->filters([
                 //
@@ -71,7 +72,7 @@ class TournamentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            GamesRelationManager::class,
         ];
     }
 

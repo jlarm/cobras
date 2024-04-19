@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -26,6 +27,12 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->font('Poppins')
             ->default()
+            ->navigationItems([
+                NavigationItem::make('Website')
+                    ->url(fn () => route('home', auth()->user()->slug), shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-link')
+                    ->sort(5)
+            ])
             ->id('admin')
             ->path('admin')
             ->login()

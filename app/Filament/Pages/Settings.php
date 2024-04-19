@@ -14,11 +14,12 @@ use Filament\Pages\Page;
 class Settings extends Page
 {
     use InteractsWithForms;
+
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.settings';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4       ;
 
     public ?array $data = [];
 
@@ -53,10 +54,10 @@ class Settings extends Page
                         TextInput::make('platform')
                             ->label('Platform'),
                         TextInput::make('url')
-                            ->label('URL')
+                            ->label('URL'),
                     ])
                     ->columns(2)
-                    ->label('Social Links')
+                    ->label('Social Links'),
             ])
             ->statePath('data')
             ->model(auth()->user());
@@ -67,7 +68,7 @@ class Settings extends Page
         return [
             Action::make('Update')
                 ->color('primary')
-                ->submit('Update')
+                ->submit('Update'),
         ];
     }
 

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use PhpParser\Builder;
 
 class Player extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'user_id',
         'name',
@@ -32,5 +32,4 @@ class Player extends Model
             $player->user_id = auth()->id();
         });
     }
-
 }
