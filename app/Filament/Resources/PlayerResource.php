@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TournamentResource\Pages;
-use App\Filament\Resources\TournamentResource\RelationManagers;
-use App\Models\Tournament;
-use App\State;
+use App\Filament\Resources\PlayerResource\Pages;
+use App\Filament\Resources\PlayerResource\RelationManagers;
+use App\Models\Player;
 use Filament\Forms;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -16,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TournamentResource extends Resource
+class PlayerResource extends Resource
 {
-    protected static ?string $model = Tournament::class;
+    protected static ?string $model = Player::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -26,20 +23,18 @@ class TournamentResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                Forms\Components\TextInput::make('name'),
+                Forms\Components\TextInput::make('number')
+                    ->label('Jersey Number'),
+                Forms\Components\TextInput::make('grad_year')
+                    ->label('Graduation Year'),
+                Forms\Components\TextInput::make('hs')
+                    ->label('High School'),
+                Forms\Components\FileUpload::make('avatar')
+                    ->image()
+                    ->imageEditor()
+                    ->imageEditorAspectRatios(['1:1'])
                     ->columnSpanFull()
-                    ->required(),
-
-                DatePicker::make('start_date'),
-
-                DatePicker::make('end_date')
-                    ->required(),
-
-                TextInput::make('city')
-                    ->required(),
-
-                Forms\Components\Select::make('state')
-                    ->options(State::class)
             ]);
     }
 
@@ -51,8 +46,8 @@ class TournamentResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('start_date')
-                ->date()
+                Tables\Columns\TextColumn::make('number'),
+                Tables\Columns\ImageColumn::make('avatar')->circular()
             ])
             ->filters([
                 //
@@ -77,9 +72,9 @@ class TournamentResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTournaments::route('/'),
-            'create' => Pages\CreateTournament::route('/create'),
-            'edit' => Pages\EditTournament::route('/{record}/edit'),
+            'index' => Pages\ListPlayers::route('/'),
+            'create' => Pages\CreatePlayer::route('/create'),
+            'edit' => Pages\EditPlayer::route('/{record}/edit'),
         ];
     }
 }
