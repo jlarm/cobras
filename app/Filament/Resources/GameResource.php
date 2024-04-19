@@ -22,7 +22,7 @@ class GameResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('tournament_id', '=', null);
+        return parent::getEloquentQuery()->where('user_id', auth()->user()->id)->where('tournament_id', '=', null);
     }
 
     public static function form(Form $form): Form
