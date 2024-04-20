@@ -27,6 +27,9 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->font('Poppins')
             ->default()
+            ->brandLogo(asset('cobras-block-orange.svg'))
+            ->brandLogoHeight('50px')
+            ->favicon(asset('favicon.svg'))
             ->navigationItems([
                 NavigationItem::make('Website')
                     ->url(fn () => route('home', auth()->user()->slug), shouldOpenInNewTab: true)

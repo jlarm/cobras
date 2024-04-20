@@ -4,6 +4,6 @@
         <livewire:navigation :$user />
     </div>
     <div class="w-full max-w-4xl mx-auto mt-20">
-        <livewire:future-games :$user />
+        <livewire:past-games :$user />
     </div>
 </div>
