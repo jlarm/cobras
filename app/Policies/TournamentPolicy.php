@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Player;
 use App\Models\Tournament;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;

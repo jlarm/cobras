@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Coach extends Model
 {
     use SoftDeletes;
+
     protected $fillable = [
         'user_id',
         'name',
@@ -30,5 +31,11 @@ class Coach extends Model
         static::creating(function ($coach) {
             $coach->user_id = auth()->id();
         });
+    }
+
+    public function getInitialsAttribute(): string
+    {
+        $initials = collect(explode(' ', $this->name))->map(fn($name) => strtoupper($name[0]))->toArray();
+        return implode('', $initials);
     }
 }

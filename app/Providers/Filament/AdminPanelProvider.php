@@ -32,9 +32,9 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.svg'))
             ->navigationItems([
                 NavigationItem::make('Website')
-                    ->url(fn () => route('home', auth()->user()->slug), shouldOpenInNewTab: true)
+                    ->url(fn () => route('team.index', auth()->user()->slug), shouldOpenInNewTab: true)
                     ->icon('heroicon-o-link')
-                    ->sort(5)
+                    ->sort(5),
             ])
             ->id('admin')
             ->path('admin')

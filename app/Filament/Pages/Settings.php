@@ -2,9 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Social;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
@@ -19,7 +21,7 @@ class Settings extends Page
 
     protected static string $view = 'filament.pages.settings';
 
-    protected static ?int $navigationSort = 4       ;
+    protected static ?int $navigationSort = 4;
 
     public ?array $data = [];
 
@@ -51,9 +53,10 @@ class Settings extends Page
                     ->columnSpanFull(),
                 Repeater::make('social_links')
                     ->schema([
-                        TextInput::make('platform')
-                            ->label('Platform'),
+                        Select::make('platform')
+                            ->options(Social::class),
                         TextInput::make('url')
+                            ->url()
                             ->label('URL'),
                     ])
                     ->columns(2)
