@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Coach::class);
     }
+
+    public function getLastNameAttribute(): string
+    {
+        return explode(' ', $this->name)[1];
+    }
 }
