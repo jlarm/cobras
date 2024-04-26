@@ -19,7 +19,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class AdminPanelProvider extends PanelProvider
+class CoachPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->font('Poppins')
             ->default()
+            ->breadcrumbs(false)
             ->brandLogo(asset('cobras-block-orange.svg'))
             ->brandLogoHeight('50px')
             ->favicon(asset('favicon.svg'))
