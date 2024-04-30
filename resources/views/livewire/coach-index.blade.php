@@ -1,9 +1,9 @@
 <div>
     <livewire:banner :$user />
-    <div class="max-w-4xl mx-auto mt-20 px-3 md:px-0 z-20">
+    <div class="max-w-4xl mx-auto md:mt-20 px-3 md:px-0 z-20">
         <livewire:navigation :$user />
     </div>
-    <div class="w-full max-w-4xl mx-auto mt-20">
+    <div class="w-full max-w-4xl mx-auto md:mt-20 px-3 lg:px-0">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             @foreach($coaches as $coach)
                 <div class="flex flex-col items-center justify-between bg-white text-slate-600 group p-3 border rounded-lg">
@@ -25,7 +25,7 @@
             @endforeach
         </div>
     </div>
-    <div class="w-full max-w-4xl mx-auto mt-20 flex justify-center">
+    <div class="w-full max-w-4xl mx-auto mt-10 flex justify-center">
         <livewire:footer :$user />
     </div>
 </div>
