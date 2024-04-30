@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TournamentOutcome;
 use App\State;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,7 @@ class Tournament extends Model
         'end_date',
         'city',
         'state',
+        'result'
     ];
 
     public function user(): BelongsTo
@@ -37,6 +39,7 @@ class Tournament extends Model
             'start_date' => 'date',
             'end_date' => 'date',
             'state' => State::class,
+            'result' => TournamentOutcome::class,
         ];
     }
 
@@ -48,5 +51,10 @@ class Tournament extends Model
             $tournament->user_id = auth()->id();
             $tournament->uuid = (string) Str::uuid();
         });
+    }
+
+    public function getOrdianalIndicatorAttribute(): string
+    {
+        return $this->result->getOrdianalIndicator();
     }
 }

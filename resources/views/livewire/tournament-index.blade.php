@@ -4,7 +4,7 @@
         <livewire:navigation :$user />
     </div>
     <div class="w-full max-w-4xl mx-auto mt-20">
-        <livewire:past-games :$user />
+        <livewire:future-tournaments :$user />
     </div>
     <div class="w-full max-w-4xl mx-auto mt-20 flex justify-center">
         <livewire:footer :$user />

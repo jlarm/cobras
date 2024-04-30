@@ -25,5 +25,8 @@
             @endforeach
         </div>
     </div>
+    <div class="w-full max-w-4xl mx-auto mt-20 flex justify-center">
+        <livewire:footer :$user />
+    </div>
 </div>
 

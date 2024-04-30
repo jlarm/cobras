@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\TournamentOutcome;
 use App\Filament\Resources\TournamentResource\Pages;
 use App\Filament\Resources\TournamentResource\RelationManagers\GamesRelationManager;
 use App\Models\Tournament;
@@ -42,6 +43,9 @@ class TournamentResource extends Resource
 
                 Forms\Components\Select::make('state')
                     ->options(State::class),
+
+                Forms\Components\Select::make('result')
+                    ->options(TournamentOutcome::class)->columnSpanFull(),
             ]);
     }
 

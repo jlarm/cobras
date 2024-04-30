@@ -1,12 +1,22 @@
-<div class="space-y-5">
-    @foreach($games as $month => $data)
-        <h1 class="text-xl text-slate-700 font-bold">{{ $month }}</h1>
+<div>
+    <livewire:banner :$user />
+    <div class="max-w-4xl mx-auto mt-20 px-3 md:px-0 z-20">
+        <livewire:navigation :$user />
+    </div>
+    <div class="w-full max-w-4xl mx-auto mt-10">
+        <div class="mb-10">
+            @if($tournament->result)
+                <div class="text-orange-500 h-20 flex flex-col justify-center items-center">
+                    <p class="text-4xl font-bold">{{ $tournament->ordianalIndicator }}</p>
+                    <p class="uppercase text-sm tracking-widest">{{ __('Place') }}</p>
+                </div>
+            @endif
+            <h1 class="text-2xl text-center">{{ $tournament->name }}</h1>
+            <p class="text-gray-500 text-sm text-center">{{ $tournament->start_date->format('F d, Y') }} - {{ $tournament->end_date->format('F d, Y') }}</p>
+        </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            @foreach($data as $game)
-                <a
-                    href="{{ ($game->tournament) ? route('team.tournaments.show', [$user->slug, $game->tournament->uuid]) : '#' }}"
-                    class="{{ ($game->tournament) ? '' : 'disabled pointer-events-none' }} flex items-center bg-white text-slate-600 group p-3 border rounded-lg"
-                >
+            @foreach($games as $game)
+                <div class="flex items-center bg-white text-slate-600 group p-3 border rounded-lg">
                     <div class="flex justify-between">
                         <div class="h-20 flex flex-col justify-center items-center border-r pr-3 mr-3 group-hover:text-orange-500">
                             <p class="text-4xl font-bold">{{ $game->date->format('d') }}</p>
@@ -15,7 +25,6 @@
                     </div>
                     <div>
                         <p class="">vs {{ $game->opponent }}</p>
-                        <p class="text-sm text-slate-400">{{ $game->tournament->name ?? '' }}</p>
                         <div class="flex gap-1 items-center text-slate-400">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#94a3b8" fill="none">
                                 <path d="M10.0808 2C5.47023 2.9359 2 7.01218 2 11.899C2 17.4776 6.52238 22 12.101 22C16.9878 22 21.0641 18.5298 22 13.9192" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
@@ -39,8 +48,11 @@
                             {{ $game->our_score }} - {{ $game->opponent_score }}
                         </div>
                     @endif
-                </a>
+                </div>
             @endforeach
         </div>
-    @endforeach
+    </div>
+    <div class="w-full max-w-4xl mx-auto mt-20 flex justify-center">
+        <livewire:footer :$user />
+    </div>
 </div>
