@@ -6,7 +6,7 @@
     <div class="w-full max-w-4xl mx-auto md:mt-20 px-3 lg:px-0">
         <div>
             <div class="space-y-5">
-                @foreach($tournaments as $month => $data)
+                @forelse($tournaments as $month => $data)
                     <h1 class="text-xl text-slate-700 font-bold">{{ $month }}</h1>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         @foreach($data as $game)
@@ -33,7 +33,9 @@
                             </a>
                         @endforeach
                     </div>
-                @endforeach
+                    @empty
+                    <p class="text-slate text-center">No past tournaments</p>
+                @endforelse
             </div>
         </div>
 

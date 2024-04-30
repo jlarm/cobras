@@ -1,6 +1,6 @@
 <div>
     <div class="space-y-5">
-        @foreach($games as $month => $data)
+        @forelse($games as $month => $data)
             <h1 class="text-xl text-slate-700 font-bold">{{ $month }}</h1>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 @foreach($data as $game)
@@ -30,6 +30,8 @@
                     </a>
                 @endforeach
             </div>
-        @endforeach
+            @empty
+                <p class="text-slate text-center">No upcoming games</p>
+        @endforelse
     </div>
 </div>
